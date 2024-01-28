@@ -1,7 +1,7 @@
 // FilterKeysSetterDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "pch.h"
 #include "FilterKeysSetter.h"
 #include "FilterKeysSetterDlg.h"
 #include <math.h>
@@ -19,13 +19,13 @@ class CAboutDlg : public CDialog
 public:
 	CAboutDlg();
 
-// Dialog Data
+	// Dialog Data
 	enum { IDD = IDD_ABOUTBOX };
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-// Implementation
+	// Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -155,7 +155,7 @@ BOOL CFilterKeysSetterDlg::OnInitDialog()
 
 	// Init from current FilterKeys settings...
 	OnBnClickedSetCurrent();
-	
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -176,7 +176,7 @@ void CFilterKeysSetterDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CFilterKeysSetterDlg::OnPaint() 
+void CFilterKeysSetterDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -210,10 +210,10 @@ HCURSOR CFilterKeysSetterDlg::OnQueryDragIcon()
 
 void CFilterKeysSetterDlg::OnOK()
 {
-	if ( !UpdateData(TRUE) ) {
+	if (!UpdateData(TRUE)) {
 		return;
 	}
-	if ( !SaveSettings() ) {
+	if (!SaveSettings()) {
 		return;
 	}
 	CDialog::OnOK();
@@ -248,20 +248,21 @@ void CFilterKeysSetterDlg::SetFlags(DWORD dwFlags)
 DWORD CFilterKeysSetterDlg::GetFlagsVal()
 {
 	DWORD dwFlags = 0;
-	if ( m_bOn ) dwFlags |= FKF_FILTERKEYSON;
-	if ( m_bAvailable ) dwFlags |= FKF_AVAILABLE;
-	if ( m_bIndicator ) dwFlags |= FKF_INDICATOR;
-	if ( m_bClick ) dwFlags |= FKF_CLICKON;
-	if ( m_bHotKeyActive ) dwFlags |= FKF_HOTKEYACTIVE;
-	if ( m_bConfirmHotKey ) dwFlags |= FKF_CONFIRMHOTKEY;
-	if ( m_bHotKeySound ) dwFlags |= FKF_HOTKEYSOUND;
+	if (m_bOn) dwFlags |= FKF_FILTERKEYSON;
+	if (m_bAvailable) dwFlags |= FKF_AVAILABLE;
+	if (m_bIndicator) dwFlags |= FKF_INDICATOR;
+	if (m_bClick) dwFlags |= FKF_CLICKON;
+	if (m_bHotKeyActive) dwFlags |= FKF_HOTKEYACTIVE;
+	if (m_bConfirmHotKey) dwFlags |= FKF_CONFIRMHOTKEY;
+	if (m_bHotKeySound) dwFlags |= FKF_HOTKEYSOUND;
 	return dwFlags;
 }
 
 void CFilterKeysSetterDlg::UpdateFlagVal()
 {
 	DWORD dwFlags = GetFlagsVal();
-	CString s; s.Format("(%u)", dwFlags);
+	CString s;
+	s.Format(_T("(%u)"), dwFlags);
 	m_staticFlagVal.SetWindowText(s);
 }
 
@@ -299,24 +300,24 @@ void CFilterKeysSetterDlg::OnBnClickedSetNormal()
 	SetValues(filter_keys);
 }
 
-static LONG GetDWORDRegKey(HKEY hKey, const WCHAR* strValueName, DWORD &nValue, DWORD nDefaultValue)
+static LONG GetDWORDRegKey(HKEY hKey, const WCHAR* strValueName, DWORD& nValue, DWORD nDefaultValue)
 {
 	nValue = nDefaultValue;
 	DWORD dwBufferSize(sizeof(DWORD));
 	DWORD nResult(0);
 	LONG nError = ::RegQueryValueExW(hKey, strValueName, 0, NULL, (LPBYTE)&nResult, &dwBufferSize);
-	if ( ERROR_SUCCESS == nError ) {
+	if (ERROR_SUCCESS == nError) {
 		nValue = nResult;
 	}
 	return nError;
 }
 
-static LONG GetBoolRegKey(HKEY hKey, const WCHAR* strValueName, bool &bValue, bool bDefaultValue)
+static LONG GetBoolRegKey(HKEY hKey, const WCHAR* strValueName, bool& bValue, bool bDefaultValue)
 {
 	DWORD nDefValue((bDefaultValue) ? 1 : 0);
 	DWORD nResult(nDefValue);
 	LONG nError = GetDWORDRegKey(hKey, strValueName, nResult, nDefValue);
-	if ( ERROR_SUCCESS == nError ) {
+	if (ERROR_SUCCESS == nError) {
 		bValue = (nResult != 0) ? true : false;
 	}
 	return nError;
@@ -324,28 +325,28 @@ static LONG GetBoolRegKey(HKEY hKey, const WCHAR* strValueName, bool &bValue, bo
 
 static LONG GetStringRegKey(HKEY hKey, const WCHAR* strValueName, WCHAR* szValue, DWORD cbValue, const WCHAR* strDefaultValue)
 {
-	wcsncpy(szValue, strDefaultValue, cbValue / sizeof(wchar_t));
+	SIZE_T sizeInWords = cbValue / sizeof(wchar_t);
 	DWORD dwBufferSize = cbValue;
 	ULONG nError = ::RegQueryValueExW(hKey, strValueName, 0, NULL, (LPBYTE)szValue, &dwBufferSize);
-	if ( ERROR_SUCCESS != nError ) {
-		wcsncpy(szValue, strDefaultValue, cbValue / sizeof(wchar_t));
+	if (ERROR_SUCCESS != nError) {
+		wcsncpy_s(szValue, sizeInWords, strDefaultValue, sizeInWords);
 	}
 	return nError;
 }
 
-static LONG GetNumericStringRegKey(HKEY hKey, const WCHAR* strValueName, INT &nValue, INT nDefaultValue)
+static LONG GetNumericStringRegKey(HKEY hKey, const WCHAR* strValueName, INT& nValue, INT nDefaultValue)
 {
 	nValue = nDefaultValue;
 	WCHAR szBuffer[512];
 	DWORD dwBufferSize = sizeof(szBuffer);
 	LONG nError = GetStringRegKey(hKey, strValueName, szBuffer, sizeof(szBuffer), L"");
-	if ( ERROR_SUCCESS == nError ) {
+	if (ERROR_SUCCESS == nError) {
 		nValue = _wtoi(szBuffer);
 	}
 	return nError;
 }
 
-static LONG GetNumericStringRegKey(HKEY hKey, const WCHAR* strValueName, DWORD &nValue, DWORD nDefaultValue)
+static LONG GetNumericStringRegKey(HKEY hKey, const WCHAR* strValueName, DWORD& nValue, DWORD nDefaultValue)
 {
 	INT iValue;
 	INT iDefaultValue = (INT)nDefaultValue;
@@ -358,7 +359,7 @@ void CFilterKeysSetterDlg::OnBnClickedSetRegistry()
 {
 	HKEY hKey;
 	LONG lRes = RegOpenKeyExW(HKEY_CURRENT_USER, L"Control Panel\\Accessibility\\Keyboard Response", 0, KEY_READ, &hKey);
-	if ( lRes == ERROR_SUCCESS ) {
+	if (lRes == ERROR_SUCCESS) {
 		FILTERKEYS filter_keys = { sizeof(FILTERKEYS) };
 		GetNumericStringRegKey(hKey, L"DelayBeforeAcceptance", filter_keys.iWaitMSec, 1000);
 		GetNumericStringRegKey(hKey, L"AutoRepeatDelay", filter_keys.iDelayMSec, 1000);
@@ -367,7 +368,8 @@ void CFilterKeysSetterDlg::OnBnClickedSetRegistry()
 		GetNumericStringRegKey(hKey, L"Flags", filter_keys.dwFlags, 122);
 		RegCloseKey(hKey);
 		SetValues(filter_keys);
-	} else {
+	}
+	else {
 		OnBnClickedSetDefaults();
 	}
 }
@@ -376,13 +378,13 @@ void CFilterKeysSetterDlg::OnBnClickedSetCurrent()
 {
 	FILTERKEYS filter_keys = { sizeof(FILTERKEYS) };
 	BOOL ok = SystemParametersInfo(SPI_GETFILTERKEYS, sizeof(FILTERKEYS), &filter_keys, 0);
-	if ( !ok ) {
-		ErrorBox("Failed to fetch current settings");
+	if (!ok) {
+		ErrorBox(_T("Failed to fetch current settings"));
 	}
 	SetValues(filter_keys);
 }
 
-void CFilterKeysSetterDlg::SetValues(const FILTERKEYS &filter_keys)
+void CFilterKeysSetterDlg::SetValues(const FILTERKEYS& filter_keys)
 {
 	UpdateData(TRUE);
 	m_nWait = filter_keys.iWaitMSec;
@@ -400,12 +402,13 @@ void CFilterKeysSetterDlg::UpdateControls()
 	UpdateData(TRUE);
 	UpdateFlagVal();
 	UpdateCharsPerSec();
-	if ( m_nMode == 0 ) {
+	if (m_nMode == 0) {
 		m_editWait.EnableWindow(TRUE);
 		m_editDelay.EnableWindow(TRUE);
 		m_editRepeat.EnableWindow(TRUE);
 		m_editBounce.EnableWindow(FALSE);
-	} else {
+	}
+	else {
 		m_editWait.EnableWindow(FALSE);
 		m_editDelay.EnableWindow(FALSE);
 		m_editRepeat.EnableWindow(FALSE);
@@ -417,10 +420,11 @@ void CFilterKeysSetterDlg::UpdateCharsPerSec()
 {
 	CString s;
 	m_editRepeat.GetWindowText(s);
-	int val = atoi(s);
-	if ( val ) {
-		s.Format("(%.1f per second)", 1000.0 / val);
-	} else {
+	int val = _wtoi(s);
+	if (val) {
+		s.Format(_T("(%.1f per second)"), 1000.0 / val);
+	}
+	else {
 		s = "(0 per second)";
 	}
 	m_staticCharsPerSec.SetWindowText(s);
@@ -428,7 +432,7 @@ void CFilterKeysSetterDlg::UpdateCharsPerSec()
 
 void CFilterKeysSetterDlg::OnBnClickedApply()
 {
-	if ( !UpdateData(TRUE) ) {
+	if (!UpdateData(TRUE)) {
 		return;
 	}
 	SaveSettings();
@@ -436,44 +440,46 @@ void CFilterKeysSetterDlg::OnBnClickedApply()
 
 bool CFilterKeysSetterDlg::SaveSettings()
 {
-	if ( m_nMode == 0 ) {
-		if ( m_nWait > 20000 ) {
-			ErrorBox("Ignore under value is too large.\nMaximum value is 20000.");
+	if (m_nMode == 0) {
+		if (m_nWait > 20000) {
+			ErrorBox(_T("Ignore under value is too large.\nMaximum value is 20000."));
 			m_editWait.SetFocus();
 			return false;
 		}
-		if ( m_nDelay > 20000 ) {
-			ErrorBox("Repeat delay value is too large.\nMaximum value is 20000.");
+		if (m_nDelay > 20000) {
+			ErrorBox(_T("Repeat delay value is too large.\nMaximum value is 20000."));
 			m_editDelay.SetFocus();
 			return false;
 		}
-		if ( m_nRepeat > 20000 ) {
-			ErrorBox("Repeat rate value is too large.\nMaximum value is 20000.");
+		if (m_nRepeat > 20000) {
+			ErrorBox(_T("Repeat rate value is too large.\nMaximum value is 20000."));
 			m_editRepeat.SetFocus();
 			return false;
 		}
-	} else {
-		if ( m_nBounce > 20000 ) {
-			ErrorBox("Bounce value is too large.\nMaximum value is 20000.");
+	}
+	else {
+		if (m_nBounce > 20000) {
+			ErrorBox(_T("Bounce value is too large.\nMaximum value is 20000."));
 			m_editBounce.SetFocus();
 			return false;
 		}
 	}
 	FILTERKEYS filter_keys = { sizeof(FILTERKEYS) };
-	if ( m_nMode == 0 ) {
+	if (m_nMode == 0) {
 		filter_keys.iWaitMSec = m_nWait;
 		filter_keys.iDelayMSec = m_nDelay;
 		filter_keys.iRepeatMSec = m_nRepeat;
-	} else {
+	}
+	else {
 		filter_keys.iBounceMSec = m_nBounce;
 	}
 	filter_keys.dwFlags = GetFlagsVal();
 	UINT fWinIni = 0;
-	if ( m_bUpdateIniFile ) fWinIni |= SPIF_UPDATEINIFILE;
-	if ( m_bSendChange ) fWinIni |= SPIF_SENDCHANGE;
+	if (m_bUpdateIniFile) fWinIni |= SPIF_UPDATEINIFILE;
+	if (m_bSendChange) fWinIni |= SPIF_SENDCHANGE;
 	bool ok = !!SystemParametersInfo(SPI_SETFILTERKEYS, sizeof(FILTERKEYS), &filter_keys, fWinIni);
-	if ( !ok ) {
-		ErrorBox("Failed to save new settings.");
+	if (!ok) {
+		ErrorBox(_T("Failed to save new settings."));
 	}
 	return ok;
 }
