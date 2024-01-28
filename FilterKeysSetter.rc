@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -27,57 +25,39 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About FilterKeysSetter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "FilterKeysSetter Version 1.0",IDC_STATIC,40,10,119,8,
-                    SS_NOPREFIX
+    LTEXT           "FilterKeysSetter Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2013",IDC_STATIC,40,25,119,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
 END
 
 IDD_FILTERKEYSSETTER_DIALOG DIALOGEX 0, 0, 228, 265
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
-    WS_CAPTION
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "FilterKeys Setter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Ignore quick keystrokes and/or set the repeat rate",
-                    IDC_IGNORE_QUICK,"Button",BS_AUTORADIOBUTTON | 
-                    BS_MULTILINE | WS_GROUP | WS_TABSTOP,12,18,108,24
-    CONTROL         "Ignore keystrokes repeated faster than:",
-                    IDC_IGNORE_REPEATED,"Button",BS_AUTORADIOBUTTON | 
-                    BS_MULTILINE,12,120,108,18
-    EDITTEXT        IDC_WAIT_EDIT,78,48,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
-                    WS_GROUP
-    EDITTEXT        IDC_DELAY_EDIT,78,66,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
-                    WS_GROUP
-    EDITTEXT        IDC_REPEAT_EDIT,78,84,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
-                    WS_GROUP
-    EDITTEXT        IDC_BOUNCE_EDIT,78,144,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
-                    WS_GROUP
-    CONTROL         "On",IDC_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,18,
-                    72,12
-    CONTROL         "Available",IDC_AVAILABLE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,144,30,72,12
-    CONTROL         "Use shortcut",IDC_HOTKEYACTIVE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,144,42,72,12
-    CONTROL         "Confirm activation",IDC_CONFIRMHOTKEY,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,144,54,72,12
-    CONTROL         "Activation sound",IDC_HOTKEYSOUND,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,144,66,72,12
-    CONTROL         "Show status",IDC_INDICATOR,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,144,78,72,12
-    CONTROL         "Key click",IDC_CLICK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,144,90,72,12
-    CONTROL         "Save to registry",IDC_UPDATEINIFILE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,144,138,66,12
-    CONTROL         "Broadcast change",IDC_SENDCHANGE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,144,150,72,12
+    CONTROL         "Ignore quick keystrokes and/or set the repeat rate",IDC_IGNORE_QUICK,
+                    "Button",BS_AUTORADIOBUTTON | BS_MULTILINE | WS_GROUP | WS_TABSTOP,12,18,108,24
+    CONTROL         "Ignore keystrokes repeated faster than:",IDC_IGNORE_REPEATED,
+                    "Button",BS_AUTORADIOBUTTON | BS_MULTILINE,12,120,108,18
+    EDITTEXT        IDC_WAIT_EDIT,78,48,30,12,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_DELAY_EDIT,78,66,30,12,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_REPEAT_EDIT,78,84,30,12,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_BOUNCE_EDIT,78,144,30,12,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    CONTROL         "On",IDC_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,18,72,12
+    CONTROL         "Available",IDC_AVAILABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,30,72,12
+    CONTROL         "Use shortcut",IDC_HOTKEYACTIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,42,72,12
+    CONTROL         "Confirm activation",IDC_CONFIRMHOTKEY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,54,72,12
+    CONTROL         "Activation sound",IDC_HOTKEYSOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,66,72,12
+    CONTROL         "Show status",IDC_INDICATOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,78,72,12
+    CONTROL         "Key click",IDC_CLICK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,90,72,12
+    CONTROL         "Save to registry",IDC_UPDATEINIFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,138,66,12
+    CONTROL         "Broadcast change",IDC_SENDCHANGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,150,72,12
     PUSHBUTTON      "Current",IDC_SET_CURRENT,12,186,36,12
     PUSHBUTTON      "Registry",IDC_SET_REGISTRY,54,186,36,12
     PUSHBUTTON      "Keyboard",IDC_SET_NORMAL,96,186,36,12
@@ -110,8 +90,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2,0
- PRODUCTVERSION 1,0,2,0
+ FILEVERSION 1,0,10,0
+ PRODUCTVERSION 1,0,10,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +107,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Soarer"
-            VALUE "FileVersion", "1.0.2.0"
+            VALUE "FileVersion", "1.0.10.0"
             VALUE "InternalName", "FilterKeysSetter.exe"
             VALUE "LegalCopyright", "(c) Soarer.  All rights reserved."
             VALUE "OriginalFilename", "FilterKeysSetter.exe"
             VALUE "ProductName", "FilterKeys Setter"
-            VALUE "ProductVersion", "1.0.2.0"
+            VALUE "ProductVersion", "1.0.10.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -148,7 +128,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -174,23 +154,21 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_ABOUTBOX            "&About FilterKeys Setter..."
 END
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.K.) resources
+// English (United Kingdom) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -236,7 +214,8 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\FilterKeysSetter.ico"
-#endif    // English (U.K.) resources
+
+#endif    // English (United Kingdom) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
