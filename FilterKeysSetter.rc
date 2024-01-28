@@ -1,0 +1,263 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About FilterKeysSetter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "FilterKeysSetter Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2013",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_FILTERKEYSSETTER_DIALOG DIALOGEX 0, 0, 228, 265
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "FilterKeys Setter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Ignore quick keystrokes and/or set the repeat rate",
+                    IDC_IGNORE_QUICK,"Button",BS_AUTORADIOBUTTON | 
+                    BS_MULTILINE | WS_GROUP | WS_TABSTOP,12,18,108,24
+    CONTROL         "Ignore keystrokes repeated faster than:",
+                    IDC_IGNORE_REPEATED,"Button",BS_AUTORADIOBUTTON | 
+                    BS_MULTILINE,12,120,108,18
+    EDITTEXT        IDC_WAIT_EDIT,78,48,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
+                    WS_GROUP
+    EDITTEXT        IDC_DELAY_EDIT,78,66,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
+                    WS_GROUP
+    EDITTEXT        IDC_REPEAT_EDIT,78,84,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
+                    WS_GROUP
+    EDITTEXT        IDC_BOUNCE_EDIT,78,144,30,12,ES_AUTOHSCROLL | ES_NUMBER | 
+                    WS_GROUP
+    CONTROL         "On",IDC_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,18,
+                    72,12
+    CONTROL         "Available",IDC_AVAILABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,144,30,72,12
+    CONTROL         "Use shortcut",IDC_HOTKEYACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,144,42,72,12
+    CONTROL         "Confirm activation",IDC_CONFIRMHOTKEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,144,54,72,12
+    CONTROL         "Activation sound",IDC_HOTKEYSOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,144,66,72,12
+    CONTROL         "Show status",IDC_INDICATOR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,144,78,72,12
+    CONTROL         "Key click",IDC_CLICK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,144,90,72,12
+    CONTROL         "Save to registry",IDC_UPDATEINIFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,144,138,66,12
+    CONTROL         "Broadcast change",IDC_SENDCHANGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,144,150,72,12
+    PUSHBUTTON      "Current",IDC_SET_CURRENT,12,186,36,12
+    PUSHBUTTON      "Registry",IDC_SET_REGISTRY,54,186,36,12
+    PUSHBUTTON      "Keyboard",IDC_SET_NORMAL,96,186,36,12
+    PUSHBUTTON      "Default",IDC_SET_DEFAULTS,138,186,36,12
+    PUSHBUTTON      "Original",IDC_SET_ORIGINAL,180,186,36,12
+    EDITTEXT        IDC_EDIT1,12,222,204,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,66,246,48,14
+    PUSHBUTTON      "Cancel",IDCANCEL,120,246,48,14
+    PUSHBUTTON      "Apply",IDC_APPLY,174,246,48,14
+    RTEXT           "Ignore under:",IDC_STATIC,24,48,48,12,SS_CENTERIMAGE
+    RTEXT           "ms",IDC_STATIC,108,48,12,12,SS_CENTERIMAGE
+    RTEXT           "Repeat delay:",IDC_STATIC,24,66,48,12,SS_CENTERIMAGE
+    RTEXT           "ms",IDC_STATIC,108,66,12,12,SS_CENTERIMAGE
+    RTEXT           "Repeat rate:",IDC_STATIC,24,84,48,12,SS_CENTERIMAGE
+    RTEXT           "ms",IDC_STATIC,108,84,12,12,SS_CENTERIMAGE
+    RTEXT           "ms",IDC_STATIC,108,144,12,12,SS_CENTERIMAGE
+    LTEXT           "flagval",IDC_FLAGVAL,144,102,72,12,SS_CENTERIMAGE
+    GROUPBOX        "Flags",IDC_STATIC,138,6,84,114
+    GROUPBOX        "When applied",IDC_STATIC,138,126,84,42
+    GROUPBOX        "Settings",IDC_STATIC,6,6,126,162
+    RTEXT           "cps",IDC_CHARS_PER_SEC,54,102,66,12,SS_CENTERIMAGE
+    GROUPBOX        "Load settings",IDC_STATIC,6,174,216,30
+    GROUPBOX        "Test area (click Apply first)",IDC_STATIC,6,210,216,30
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,2,0
+ PRODUCTVERSION 1,0,2,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Soarer"
+            VALUE "FileVersion", "1.0.2.0"
+            VALUE "InternalName", "FilterKeysSetter.exe"
+            VALUE "LegalCopyright", "(c) Soarer.  All rights reserved."
+            VALUE "OriginalFilename", "FilterKeysSetter.exe"
+            VALUE "ProductName", "FilterKeys Setter"
+            VALUE "ProductVersion", "1.0.2.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_FILTERKEYSSETTER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 221
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 258
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About FilterKeys Setter..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\FilterKeysSetter.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\FilterKeysSetter.ico"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\FilterKeysSetter.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
